@@ -6,13 +6,13 @@ namespace Skillll
     [CreateAssetMenu(fileName = "New Skill", menuName = "Skill/New Skill", order = 1)]
     public class SkillInfo : ScriptableObject
     {
-        [SerializeField]
+        [SerializeField, Tooltip("技能名称")]
         string _name;
-        [SerializeField]
+        [SerializeField, Tooltip("技能描述")]
         string _description;
-        [SerializeField]
+        [SerializeField, Tooltip("技能实现类")]
         ClassReference _skillImplClass;
-        [SerializeField]
+        [SerializeField, Tooltip("技能冷却")]
         float _skillCooldown;
         
         public string Name => _name;

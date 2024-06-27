@@ -5,11 +5,13 @@ namespace Skillll
 {
     public class Skill : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField, Tooltip("技能信息")]
         SkillInfo _skillInfo;
 
         private SkillImpl _skillImpl;
-
+        /// <summary>
+        /// 技能实现
+        /// </summary>
         private SkillImpl SkillImpl
         {
             get
@@ -25,11 +27,32 @@ namespace Skillll
             }
         }
 
-        private CooldownTimer _cooldownTimer;
-        private InvokeTimer _invokeTimer;
-        private InputTimer _inputTimer;
-
         private void Start()
+        {
+            InitTimer();
+        }
+
+        // to delete
+        private void Update()
+        {
+            // 用于测试
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartInput();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                StopInput();
+            }
+        }
+
+        #region Timer
+        private InputTimer _inputTimer;
+        private InvokeTimer _invokeTimer;
+        private CooldownTimer _cooldownTimer;
+
+        #region Init Timer
+        private void InitTimer()
         {
             _inputTimer = SkillTimerManager.Instance.CreateTimer<InputTimer>();
             _inputTimer.TimerStart += (timer) => SkillImpl.OnInput(this, timer as InputTimer);
@@ -47,20 +70,9 @@ namespace Skillll
             _cooldownTimer.TimerUpdate += (timer) => SkillImpl.OnCooldowning(this, timer as CooldownTimer);
             _cooldownTimer.TimerStop += (timer) => SkillImpl.OnCooldownCompleted(this, timer as CooldownTimer);
         }
+        #endregion
 
-        // to delete
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartInput();
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                StopInput();
-            }
-        }
-
+        #region Control Timer
         public void StartInput()
         {
             if (_cooldownTimer.IsRunning)
@@ -95,5 +107,7 @@ namespace Skillll
         {
             _cooldownTimer.Start();
         }
+        #endregion
+        #endregion
     }
 }
