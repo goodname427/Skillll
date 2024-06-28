@@ -88,8 +88,8 @@ namespace Skillll
             Register();
             TimerTime = 0;
             IsRunning = true;
-            OnStart();
             TimerStart?.Invoke(this);
+            OnStart();
         }
         /// <summary>
         /// ½áÊø¼ÆÊ±Æ÷
@@ -103,8 +103,8 @@ namespace Skillll
 
             Unregister();
             IsRunning = false;
-            OnStop();
             TimerStop?.Invoke(this);
+            OnStop();
         }
 
         /// <summary>
@@ -113,8 +113,8 @@ namespace Skillll
         private void Update()
         {
             TimerTime += Time.deltaTime;
-            OnUpdate();
             TimerUpdate?.Invoke(this);
+            OnUpdate();
         }
         #endregion
 
