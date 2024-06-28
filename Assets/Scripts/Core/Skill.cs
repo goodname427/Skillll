@@ -61,18 +61,20 @@ namespace Skillll
         #region Init Timer
         private void InitTimer()
         {
-            _inputTimer = SkillTimerManager.Instance.CreateTimer<InputTimer>();
+            _inputTimer = new InputTimer();
             _inputTimer.TimerStart += (timer) => SkillImpl.OnInput(this, timer as InputTimer);
             _inputTimer.TimerUpdate += (timer) => SkillImpl.OnInputing(this, timer as InputTimer);
             _inputTimer.TimerStop += (timer) => SkillImpl.OnInputCompleted(this, timer as InputTimer);
 
-            _invokeTimer = SkillTimerManager.Instance.CreateTimer<InvokeTimer>();
+            _invokeTimer = new InvokeTimer();
             _invokeTimer.TimerStart += (timer) => SkillImpl.OnInvoke(this, timer as InvokeTimer);
             _invokeTimer.TimerUpdate += (timer) => SkillImpl.OnInvoking(this, timer as InvokeTimer);
             _invokeTimer.TimerStop += (timer) => SkillImpl.OnInvokeCompleted(this, timer as InvokeTimer);
 
-            _cooldownTimer = SkillTimerManager.Instance.CreateTimer<CooldownTimer>();
-            _cooldownTimer.Cooldown = _skillInfo.SkillCooldown;
+            _cooldownTimer = new CooldownTimer
+            {
+                Cooldown = _skillInfo.SkillCooldown
+            };
             _cooldownTimer.TimerStart += (timer) => SkillImpl.OnCooldown(this, timer as CooldownTimer);
             _cooldownTimer.TimerUpdate += (timer) => SkillImpl.OnCooldowning(this, timer as CooldownTimer);
             _cooldownTimer.TimerStop += (timer) => SkillImpl.OnCooldownCompleted(this, timer as CooldownTimer);

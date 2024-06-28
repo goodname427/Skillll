@@ -6,8 +6,5 @@ namespace Skillll
 {
     public class InputTimer : SkillTimer
     {
-        public InputTimer(uint timerID, SkillTimerManager skillTimerManager) : base(timerID, skillTimerManager)
-        {
-        }
     }
 }

@@ -43,7 +43,7 @@ namespace Skillll
         #endregion
 
         #region Timer Info
-        private readonly SkillTimerManager _manager;
+        private readonly SkillTimerUpdater _manager;
         /// <summary>
         /// 计时器ID
         /// </summary>
@@ -59,38 +59,22 @@ namespace Skillll
         public bool IsRunning { get; private set; }
         #endregion
 
-        #region Init
-        /// <summary>
-        /// 不要显示调用计时器的构造函数, 请使用`TimerManager::CreateTimer`创建计时器
-        /// </summary>
-        /// <param name="timerID"></param>
-        /// <param name="skillTimerManager"></param>
-        public SkillTimer(uint timerID, SkillTimerManager skillTimerManager)
-        {
-            TimerID = timerID;
-            _manager = skillTimerManager;
-        }
-
+        #region Control
         /// <summary>
         /// 注册计时器
         /// </summary>
         private void Register()
         {
-            _manager.TimerUpdate += Update;
+            SkillTimerUpdater.Instance.TimerUpdate += Update;
         }
         /// <summary>
         /// 注销计时器
         /// </summary>
         private void Unregister()
         {
-            _manager.TimerUpdate -= Update;
+            SkillTimerUpdater.Instance.TimerUpdate -= Update;
         }
-        #endregion
 
-
-
-
-        #region Control
         /// <summary>
         /// 开启计时器
         /// </summary>
