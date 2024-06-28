@@ -37,21 +37,6 @@ namespace Skillll
             _invokeTimer.Stop();
             _cooldownTimer.Stop();
         }
-        
-        // to delete
-        private void Update()
-        {
-            // ”√”⁄≤‚ ‘
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartInput();
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                StopInput();
-            }
-        }
-
 
         #region Timer
         private InputTimer _inputTimer;
