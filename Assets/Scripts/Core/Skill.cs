@@ -31,7 +31,13 @@ namespace Skillll
         {
             InitTimer();
         }
-
+        private void OnDestroy()
+        {
+            _inputTimer.Stop();
+            _invokeTimer.Stop();
+            _cooldownTimer.Stop();
+        }
+        
         // to delete
         private void Update()
         {
@@ -45,6 +51,7 @@ namespace Skillll
                 StopInput();
             }
         }
+
 
         #region Timer
         private InputTimer _inputTimer;

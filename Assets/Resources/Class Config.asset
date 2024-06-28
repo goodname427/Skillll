@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d451b00d49bd741864c7bb1e173ca4, type: 3}
-  m_Name: New Skill
+  m_Script: {fileID: 11500000, guid: b51250f1721c56b42ab0fca9f281633e, type: 3}
+  m_Name: Class Config
   m_EditorClassIdentifier: 
-  _name: TestSkill
-  _description: "\u6D4B\u8BD5\u6280\u80FD1"
-  _skillImplClass:
-    ClassName: TestSkill
-  _skillCooldown: 1
+  _includeNamespaces:
+  - Skillll
+  - Skillll.Test
