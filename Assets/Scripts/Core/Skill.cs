@@ -27,7 +27,7 @@ namespace Skillll
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             InitTimer();
         }
